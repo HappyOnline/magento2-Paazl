@@ -139,8 +139,10 @@ class Form extends \Magento\Sales\Block\Adminhtml\Order\Address\Form
     }
 
     /**
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $countryElement
-     * @return void
+     * @param AbstractElement $countryElement
+     * @param null            $storeId
+     *
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function processCountryOptions(\Magento\Framework\Data\Form\Element\AbstractElement $countryElement, $storeId = null)
     {

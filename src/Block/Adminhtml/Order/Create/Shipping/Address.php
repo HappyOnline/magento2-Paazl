@@ -144,10 +144,12 @@ class Address extends \Magento\Sales\Block\Adminhtml\Order\Create\Shipping\Addre
     }
 
     /**
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $countryElement
-     * @return void
+     * @param AbstractElement $countryElement
+     * @param null            $storeId
+     *
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    private function processCountryOptions(\Magento\Framework\Data\Form\Element\AbstractElement $countryElement)
+    protected function processCountryOptions(\Magento\Framework\Data\Form\Element\AbstractElement $countryElement, $storeId = null)
     {
         $storeId = $this->getBackendQuoteSession()->getStoreId();
         $options = $this->getCountriesCollection()
@@ -162,7 +164,7 @@ class Address extends \Magento\Sales\Block\Adminhtml\Order\Create\Shipping\Addre
      * @deprecated
      * @return \Magento\Directory\Model\ResourceModel\Country\Collection
      */
-    private function getCountriesCollection()
+    protected function getCountriesCollection()
     {
         if (!$this->countriesCollection) {
             $this->countriesCollection = ObjectManager::getInstance()
@@ -177,7 +179,7 @@ class Address extends \Magento\Sales\Block\Adminhtml\Order\Create\Shipping\Addre
      * @deprecated
      * @return Quote
      */
-    private function getBackendQuoteSession()
+    protected function getBackendQuoteSession()
     {
         if (!$this->backendQuoteSession) {
             $this->backendQuoteSession = ObjectManager::getInstance()->get(Quote::class);
