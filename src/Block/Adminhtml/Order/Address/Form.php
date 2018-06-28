@@ -142,7 +142,7 @@ class Form extends \Magento\Sales\Block\Adminhtml\Order\Address\Form
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $countryElement
      * @return void
      */
-    private function processCountryOptions(\Magento\Framework\Data\Form\Element\AbstractElement $countryElement)
+    protected function processCountryOptions(\Magento\Framework\Data\Form\Element\AbstractElement $countryElement)
     {
         $storeId = $this->getBackendQuoteSession()->getStoreId();
         $options = $this->getCountriesCollection()
@@ -157,7 +157,7 @@ class Form extends \Magento\Sales\Block\Adminhtml\Order\Address\Form
      * @deprecated
      * @return \Magento\Directory\Model\ResourceModel\Country\Collection
      */
-    private function getCountriesCollection()
+    protected function getCountriesCollection()
     {
         if (!$this->countriesCollection) {
             $this->countriesCollection = ObjectManager::getInstance()
@@ -172,7 +172,7 @@ class Form extends \Magento\Sales\Block\Adminhtml\Order\Address\Form
      * @deprecated
      * @return Quote
      */
-    private function getBackendQuoteSession()
+    protected function getBackendQuoteSession()
     {
         if (!$this->backendQuoteSession) {
             $this->backendQuoteSession = ObjectManager::getInstance()->get(Quote::class);
