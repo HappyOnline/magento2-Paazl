@@ -78,7 +78,11 @@ class SalesOrderAddressSaveObserver implements ObserverInterface
 
             $streetParts['street'] = $customerAddress->getCustomAttribute('street_name')->getValue();
             $streetParts['house_number'] = $customerAddress->getCustomAttribute('house_number')->getValue();
-            $streetParts['addition'] = $customerAddress->getCustomAttribute('house_number_addition')->getValue();
+            if ($customerAddress->getCustomAttribute('house_number_addition')) {
+                $streetParts['addition'] = $customerAddress->getCustomAttribute('house_number_addition')->getValue();
+            } else {
+                $streetParts['addition'] = '';
+            }
         }
         // Load address directly. Address from observer event misses data.
         else {
